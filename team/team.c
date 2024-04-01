@@ -1,0 +1,149 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<time.h>
+
+int main()
+{
+    char* m_name[29] = {"노주영", "임석현", "황운하", "김혜빈", "조세빈", "김승수", "서 훈", "오은지", "이은승", "김영곤",
+                    "김민아", "권철민", "조대정", "박장미", "박희정", "박민건", "김재신", "김성근", "이동준", "류홍걸",
+                    "유시온", "황은비", "박선후", "안광민", "이 철", "이준호", "김 건", "강진영", "복이"};
+    char name[30];
+    char* m_name2[29];
+    char b;
+    int c[25][25] = {0};
+    int i = 0;
+    int j = 0;
+    int n;
+    int m;
+    int l;
+    int o;
+    c[0][0] = 1;
+    srand((unsigned int)time(NULL));
+
+    printf("게임을 시작하시겠습니까? 1. 게임 시작 2. 게임 종료\n");
+    scanf("%d", &o);
+    printf("캐릭터 이름을 입력하세요: ");
+    scanf("%s", &name);
+
+    // for (i = 0; i < 29; i++)
+    // {
+    //     name_mon = strcmp(m_name[i], name);
+    //     if (name_mon != 0)
+    //     {
+    //         printf("%s\n", m_name[i]);
+    //     }
+    //     else
+    //     {
+    //         continue;
+    //     }
+    // }
+
+    int random = rand()%28; // 이름 랜덤 출력용 - 51line
+    for (i = 0; i < 29; i++)
+    {
+        if (strcmp(m_name[i], name) != 0)
+        {            
+            m_name2[i] = m_name[i];
+            // printf("%s\n", m_name2[i]);     // 이름 랜덤 출력용 - 45line
+            break;
+        }
+        else
+        {
+            continue;
+        }
+    }
+        
+    while(o == 1)
+    {
+        scanf("%c", &b);
+        if(b == 'w')
+        {
+            i--;
+            if(c[i][j]==0)
+            {
+                n = rand()%3;
+                random = rand()%28;
+                if(n == 2)
+                {                    
+                    // printf("비상! 몬스터를 마주쳤다!\n");
+                    printf("초급몬스터 [%s] 등장\n", m_name2[random]);                        
+                }                    
+            }
+            else
+            {
+                printf("이미 지나온 길입니다. 다른 길을 탐색해주세요.\n");
+            }
+            c[i][j]=1;
+        }
+        if(b == 'a')
+        {
+            j--;
+            if(c[i][j]==0)
+            {
+                n = rand()%3;
+                random = rand()%28;
+                if(n == 2)
+                {              
+                    // printf("비상! 몬스터를 마주쳤다!\n");
+                    printf("초급몬스터 [%s] 등장\n", m_name2[random]);                          
+                }
+            }
+            else
+            {
+                printf("이미 지나온 길입니다. 다른 길을 탐색해주세요.\n");
+            }
+            c[i][j]=1;
+        }
+        if(b == 's')
+        {
+            i++;
+            if(c[i][j]==0)
+            {
+                n = rand()%3;
+                random = rand()%28;
+                if(n == 2)
+                {
+                    // printf("비상! 몬스터를 마주쳤다!\n");
+                    printf("초급몬스터 [%s] 등장\n", m_name2[random]);   
+                }
+            }
+            else
+            {
+                printf("이미 지나온 길입니다. 다른 길을 탐색해주세요.\n");
+            }
+            c[i][j]=1;
+        }
+        if(b == 'd')
+        {
+            j++;
+            if(c[i][j]==0)
+            {
+                n = rand()%3;
+                random = rand()%28;
+                if(n == 2)
+                {
+                    // printf("비상! 몬스터를 마주쳤다!\n");
+                    printf("초급몬스터 [%s] 등장\n", m_name2[random]);   
+                }
+            }
+            else
+            {
+                printf("이미 지나온 길입니다. 다른 길을 탐색해주세요.\n");
+            }
+            c[i][j]=1;
+        }
+        for(m = 0; m < 25; m++)
+        {
+            for(l = 0; l < 25; l++)
+            {
+                printf("%5d", c[m][l]);\
+            }
+            printf("\n");
+        }
+        scanf("%d", &o);
+    }
+    
+
+    return 0;
+}
